@@ -15,7 +15,9 @@ from matplotlib.patches import Patch
 from matplotlib.ticker import FuncFormatter, NullFormatter
 
 HERE = Path(__file__).resolve().parent
-FIG_DIR = HERE / "report_figures"
+ROOT = HERE.parent
+DATA_DIR = ROOT / "Data input"
+FIG_DIR = HERE
 FONT_DIR = HERE / "fonts"
 
 # Existing hashed filenames referenced by the markdown report
@@ -466,8 +468,8 @@ def fig6_complaint_or() -> None:
 
 def main() -> None:
     register_fonts()
-    item = pd.read_csv(HERE / "item_level.csv", low_memory=False)
-    deliv = pd.read_csv(HERE / "delivery_level.csv", low_memory=False)
+    item = pd.read_csv(DATA_DIR / "item_level.csv", low_memory=False)
+    deliv = pd.read_csv(DATA_DIR / "delivery_level.csv", low_memory=False)
     fig1_fulfillment(item)
     fig2_kpis(deliv)
     fig3_category_all(item)

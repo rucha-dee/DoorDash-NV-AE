@@ -3,14 +3,15 @@ Statistical tools enabling multivariate analysis to inform DoorDash New Vertical
 
 ## Data input
 New datasets created using Python based on dataset cleaning:
-- `delivery_level.csv`
-- `item_level.csv`
+- `Data input/delivery_level.csv`
+- `Data input/item_level.csv`
 
 ## Statistical Models (R and Python)
-- **Model Explanations.md**: AI-generated overview of the models and all statistical concepts and values used in the Python and R files.
-- **python_analysis.py**: Python code for data cleaning, feature engineering, and creating regression models M1–M5. All coefficient values exported as `.csv` files.
-- **R_analysis.R**: Replicated Python models in R for independent model verification. All coefficient values exported as `.csv` files.
+- `Statistical Models/Model Explanations.md`: AI-generated overview of the models and all statistical concepts and values used in the Python and R files.
+- `Statistical Models/python_analysis.py`: Python code for data cleaning, feature engineering, and creating regression models M1–M5. All coefficient values exported as `.csv` files.
+- `Statistical Models/R_analysis.R`: Replicated Python models in R for independent model verification. All coefficient values exported as `.csv` files.
+- Coefficient tables: `Statistical Models/py_m*_coefs.csv` and `Statistical Models/R_m*_coefs.csv`
 
 ## Report Images
-- **make_figures.py**: Python code to create report figures using DoorDash branded color hex codes and DM Sans font.
-- **Report figures**: `.png` image files created by Python.
+- `Report images/make_figures.py`: Python code to create report figures using DoorDash branded color hex codes and DM Sans font.
+- `Report images/*.png`: image files created by Python.
