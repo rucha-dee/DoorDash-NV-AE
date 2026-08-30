@@ -2,10 +2,11 @@
 DoorDash New Verticals Analytics Exercise
 Python analysis: data cleaning, feature engineering, and regression models M1-M5.
 
-Input : "2025 New Verticals Analytics Exercise (RD).xlsx"  (sheet "Dataset")
-Output: cleaned delivery_level.csv / item_level.csv (consumed unchanged by
-        R_analysis.R), py_m*_coefs.csv coefficient tables, and printed
-        model summaries + a cleaning/sample audit trail.
+Input : "../New Verticals Analytics Exercise*.xlsx"  (sheet "Dataset")
+Output: cleaned ../Data input/delivery_level.csv / item_level.csv
+        (consumed unchanged by R_analysis.R), py_m*_coefs.csv coefficient
+        tables in this folder, and printed model summaries + a cleaning/
+        sample audit trail.
 
 Two modelling conventions that the report needs to state explicitly:
 
@@ -19,12 +20,16 @@ Two modelling conventions that the report needs to state explicitly:
    appears across many deliveries (the top 10% of dashers carry ~60% of
    volume), so treating deliveries as independent understates uncertainty.
 """
+from pathlib import Path
+
 import glob
 import numpy as np
 import pandas as pd
 import statsmodels.formula.api as smf
 
-RAW_FILE = glob.glob("../2025 New Verticals Analytics Exercise*.xlsx")[0]
+ROOT = Path(__file__).resolve().parent.parent
+DATA_DIR = ROOT / "Data input"
+RAW_FILE = glob.glob(str(ROOT / "*New Verticals Analytics Exercise*.xlsx"))[0]
 PERISHABLE = {"Produce", "Dairy & Eggs", "Meat & Fish", "Frozen",
               "Fresh Food", "Bakery", "Ice Cream"}
 
@@ -174,8 +179,9 @@ print(f"Dayparts (EDT)      : {[str(c) for c in deliv.daypart.cat.categories]}")
 
 item = item.merge(deliv[["DELIVERY_UUID", "cluster_id", "daypart", "is_weekend"]],
                   on="DELIVERY_UUID", how="left")
-deliv.to_csv("delivery_level.csv", index=False)
-item.to_csv("item_level.csv", index=False)
+DATA_DIR.mkdir(parents=True, exist_ok=True)
+deliv.to_csv(DATA_DIR / "delivery_level.csv", index=False)
+item.to_csv(DATA_DIR / "item_level.csv", index=False)
 
 # ---------------------------------------------------------------------------
 # 4. Analysis-sample accounting  (what each model actually sees, and why)
@@ -310,5 +316,5 @@ print(mix.loc[[c for c in ["Drinks", "Snacks", "Produce", "Meat & Fish"] if c in
               "DashMart1"].to_string())
 
 banner("DONE")
-print("Wrote delivery_level.csv, item_level.csv, py_m1..m5_coefs.csv")
+print("Wrote Data input/delivery_level.csv, item_level.csv, and py_m1..m5_coefs.csv")
 print("Run R_analysis.R next; it consumes these CSVs unchanged for the cross-tool check.")

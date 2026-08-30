@@ -16,8 +16,8 @@
 ## Cluster-robust standard errors are computed in base R below, so the script
 ## has no package dependencies beyond a stock install (no sandwich/lmtest).
 
-deliv <- read.csv("delivery_level.csv", stringsAsFactors = FALSE)
-item  <- read.csv("item_level.csv",     stringsAsFactors = FALSE)
+deliv <- read.csv("../Data input/delivery_level.csv", stringsAsFactors = FALSE)
+item  <- read.csv("../Data input/item_level.csv",     stringsAsFactors = FALSE)
 
 ref <- function(x, r) relevel(factor(x), ref = r)
 deliv$DELIV_STORE_NAME <- ref(deliv$DELIV_STORE_NAME, "DashMart1")
