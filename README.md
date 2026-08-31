@@ -1,5 +1,5 @@
 # DoorDash-NV-AE
-Statistical tools enabling multivariate analysis to inform DoorDash New Verticals business strategy. Contains data cleaning, visualization, and analysis skills.
+Statistical tools enabling regression analysis to inform DoorDash New Verticals business strategy. Contains data cleaning, visualization, and analysis skills.
 
 ## Data input
 New datasets created using Python based on dataset cleaning:
